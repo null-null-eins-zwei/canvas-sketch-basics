@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+</head>
+<body>
+    <canvas width='600' height='600'></canvas>
+    <script>
+        let canvas = document.querySelector('canvas');
+        let context = canvas.getContext('2d');
+
+        let width = context.canvas.width;
+        let height = context.canvas.height;
+
+        context.fillStyle = 'lightblue';
+        context.fillRect(0, 0, width, height);
+        context.lineWidth = width * 0.01;
+
+        context.lineWidth = 10;
+
+        context.beginPath();
+        context.strokeStyle = 'red';
+        context.arc(height / 2, width / 2, 10, 0, Math.PI);
+        context.stroke();
+
+        context.beginPath();
+        context.strokeStyle = 'yellow';
+        context.arc(height / 2, width / 2, 30, Math.PI / 2, Math.PI);
+        context.stroke();
+
+        context.beginPath();
+        context.strokeStyle = 'green';
+        context.arc(height / 2, width / 2, 50, Math.PI, Math.PI * 2);
+        context.stroke();
+
+
+        var gradient = context.createLinearGradient(100, 100, 400, 400);
+        gradient.addColorStop('0', 'magenta');
+        gradient.addColorStop('0.5' ,'blue');
+        gradient.addColorStop('1.0', 'red');
+
+        context.beginPath();
+        context.strokeStyle = gradient;
+        context.rect(100, 100, 400, 400);
+        context.stroke();
+
+
+        context.lineWidth = 2;
+        context.strokeStyle = 'grey';
+        context.font = '50px Verdana';
+        context.textAlign = 'center';
+        context.beginPath();
+        context.strokeText('zero.zero.einz.zwei', width / 2, 50);
+
+
+        let delta = 0;
+        const animate = () => {
+            delta += 0.1;
+
+            context.beginPath();
+            context.lineWidth = 30;
+            context.strokeStyle = 'white';
+            context.arc(height / 2, width / 2, 80, 0, Math.PI * 2);
+            context.stroke();
+
+            context.beginPath();
+            context.lineWidth = 20;
+            context.strokeStyle = gradient;
+            context.arc(height / 2, width / 2, 80, 0 + delta, Math.PI / 2 + delta);
+            context.stroke();
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+    </script>
+</body>
+</html>
