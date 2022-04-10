@@ -1,0 +1,23 @@
+{
+  "name": "canvas-sketch-basics",
+  "version": "1.0.0",
+  "description": "This repo is based on \"[Creative Coding: Making Visuals with JavaScript](https://www.domestika.org/en/courses/2729-creative-coding-making-visuals-with-javascript)\" Domestika course.",
+  "main": "canvas-sketch-demo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/null-null-eins-zwei/canvas-sketch-basics.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/null-null-eins-zwei/canvas-sketch-basics/issues"
+  },
+  "homepage": "https://github.com/null-null-eins-zwei/canvas-sketch-basics#readme",
+  "dependencies": {
+    "canvas-sketch": "^0.7.5"
+  }
+}
