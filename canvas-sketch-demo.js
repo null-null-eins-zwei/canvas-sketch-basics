@@ -1,5 +1,6 @@
 import canvasSketch from 'canvas-sketch';
 import random from 'canvas-sketch-util/random';
+import {Pane as Tweakpane} from 'tweakpane';
 
 const settings = {
   dimensions: [ 1080, 1080 ],
@@ -7,9 +8,15 @@ const settings = {
 
 let manager;
 
-let text = 'k';
 let fontSize = 1200;
 let fontFamily = 'serif';
+
+const PARAMS = {
+  text: 'k',
+  glyphs: '_= /',
+  background1: '#640096',
+  background2: '#ffff37',
+};
 
 const typeCanvas = document.createElement('canvas');
 const typeContext = typeCanvas.getContext('2d');
@@ -34,8 +41,8 @@ const sketch = ({ context, width, height }) => {
     // Gradient background
     const margin = 50;
     const fill = context.createLinearGradient(0, 0, width, height);
-    fill.addColorStop(0, 'cyan');
-    fill.addColorStop(1, 'orange');
+    fill.addColorStop(0, PARAMS.background1);
+    fill.addColorStop(1, PARAMS.background2);
     context.fillStyle = fill;
     context.fillRect(margin, margin, width - margin * 2, height - margin * 2);
   
@@ -78,6 +85,22 @@ const sketch = ({ context, width, height }) => {
   };
 };
 
+const createPane = () => {
+  const pane = new Tweakpane();
+  const flBasics = pane.addFolder({ title: 'Basics' });
+  flBasics.addInput(PARAMS, 'glyphs');
+  flBasics.addMonitor(PARAMS, 'text');
+
+  const flBackground = pane.addFolder({ title: 'Background' })
+  flBackground.addInput(PARAMS, 'background1', {view: 'color', picker: 'inline', expanded: true });
+  flBackground.addInput(PARAMS, 'background2', {view: 'color', picker: 'inline', expanded: true });
+
+  pane.on('change', (ev) => {
+    console.log('changed: ' + JSON.stringify(ev.value));
+    manager.render();
+  });
+}
+
 const updateTypeCanvas = (fontSize) => {
   typeContext.fillStyle = 'black';
   typeContext.fillRect(0, 0, typeCanvas.width, typeCanvas.height);
@@ -86,7 +109,7 @@ const updateTypeCanvas = (fontSize) => {
   typeContext.font = `${fontSize}px ${fontFamily}`;
   typeContext.textBaseline = 'top';
 
-  const metrics = typeContext.measureText(text);
+  const metrics = typeContext.measureText(PARAMS.text);
   const mx = metrics.actualBoundingBoxLeft * -1;
   const my = metrics.actualBoundingBoxAscent * -1;
   const mw = metrics.actualBoundingBoxLeft + metrics.actualBoundingBoxRight;
@@ -102,7 +125,7 @@ const updateTypeCanvas = (fontSize) => {
   typeContext.rect(mx, my, mw, mh);
   typeContext.stroke();
 
-  typeContext.fillText(text, 0, 0);
+  typeContext.fillText(PARAMS.text, 0, 0);
   typeContext.restore();
 }
 
@@ -112,22 +135,19 @@ const getGlyph = (v) => {
 	if (v < 150) return '-';
 	if (v < 200) return '+';
 
-	const glyphs = '_= /'.split('');
-
-	return random.pick(glyphs);
+	return random.pick(PARAMS.glyphs.split(''));
 };
-
 
 const onKeyUp = (e) => {
-	text = e.key.toUpperCase();
+	PARAMS.text = e.key.toUpperCase();
 	manager.render();
 };
-
-document.addEventListener('keyup', onKeyUp);
-
 
 const start = async () => {
 	manager = await canvasSketch(sketch, settings);
 };
 
+createPane();
 start();
+document.addEventListener('keyup', onKeyUp);
+
