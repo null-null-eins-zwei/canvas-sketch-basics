@@ -35,7 +35,7 @@ This is designed to be used alongside the canvas-sketch toolset, but it is gener
 
 ### Animation export
 * We can save anything we draw with `Ctrl + S`.
-* By default export save in `Download` folder. To set another folder, use `--output` flag.
+* By default export save in `~\Downloads` folder. To set another folder, use `--output` flag.
 * When you use `Ctrl + Shift + S` to export an animation, it will begin recording *image frames as separate files* and log progress in the browser console. You can hit this keystroke again to stop recording.
 * To save animation as video we need ffmpeg: 
   * `npm install @ffmpeg-installer/ffmpeg --global`
