@@ -22,7 +22,7 @@ Links to additional resources:
 ### Basic CLI usage
 * Create new: `canvas-sketch canvas-sketch-demo.js --new --open`
 * Run existed: `canvas-sketch canvas-sketch-demo.js --open`
-* Build to website: `canvas-sketch mysketch.js --name index --build --inline`
+* Build to website: `canvas-sketch canvas-sketch-demo.js --name canvas-sketch-demo-build --build --inline --no-compress`
   * https://github.com/mattdesl/canvas-sketch/blob/master/docs/cli.md#building-to-a-website
 
 ### canvas-sketch-util
