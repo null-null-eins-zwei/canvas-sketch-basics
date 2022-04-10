@@ -14,16 +14,24 @@ Links to additional resources:
 
 `canvas-sketch` is a loose collection of tools, modules and resources for creating generative art in JavaScript and the browser.
 
-### CLI setup:
+### CLI setup
 * https://github.com/mattdesl/canvas-sketch
 * `npm install canvas-sketch-cli --global`
   * https://github.com/mattdesl/canvas-sketch/blob/master/docs/cli.md 
 
-### Basic CLI usage:
+### Basic CLI usage
 * Create new: `canvas-sketch canvas-sketch-demo.js --new --open`
 * Run existed: `canvas-sketch canvas-sketch-demo.js --open`
 * Build to website: `canvas-sketch mysketch.js --name index --build --inline`
   * https://github.com/mattdesl/canvas-sketch/blob/master/docs/cli.md#building-to-a-website
+
+### canvas-sketch-util
+Utilities for generative art in Canvas, WebGL and JavaScript.
+
+This is designed to be used alongside the canvas-sketch toolset, but it is generic enough to work for various Node.js/Browser use cases.
+
+* npm install canvas-sketch-util --save
+* https://github.com/mattdesl/canvas-sketch-util
 
 ### Animation export
 * We can save anything we draw with `Ctrl + S`.
@@ -34,7 +42,7 @@ Links to additional resources:
 * Run with video-export mode: `canvas-sketch canvas-sketch-demo.js --output=output/stream-demo --stream`
 * Details: https://github.com/mattdesl/canvas-sketch/blob/master/docs/exporting-artwork.md#exporting-animations
 
-## Tweakpane:
+## Tweakpane
 Compact pane library for fine-tuning parameters and monitoring value changes.
 * https://cocopon.github.io/tweakpane/
 * https://www.npmjs.com/package/tweakpane
